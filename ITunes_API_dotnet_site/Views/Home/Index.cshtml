@@ -1,0 +1,22 @@
+﻿@model ITunes_API_dotnet_site.Models.TopApp[];
+
+@section head {
+    <title>@ViewData["title"]</title>
+}
+
+<div class="row clear-4">
+    @foreach (Models.TopApp app in @Model)
+    {
+        <div class="col-3">
+            <div class="card">
+                <img class="card-img" src="@app.artworkUrl100" alt="Avatar">
+                <div class="container">
+                    <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.id)">@app.name</a></h3>
+                    <p style="font-size:10px">@app.artistName</p>
+
+                    <p>Genre: <span style="font-size:10px">@app.genres</span></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,17 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITunes_API_dotnet_site", "ITunes_API_dotnet_site\ITunes_API_dotnet_site.csproj", "{AA8DEC9D-F942-4CEC-B95B-005787517BDB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AA8DEC9D-F942-4CEC-B95B-005787517BDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8DEC9D-F942-4CEC-B95B-005787517BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8DEC9D-F942-4CEC-B95B-005787517BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8DEC9D-F942-4CEC-B95B-005787517BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
