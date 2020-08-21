@@ -1,22 +1,28 @@
 ﻿@model ITunes_API_dotnet_site.Models.TopApp[];
 
 @section head {
-    <title>@ViewData["title"]</title>
+    <title>@ViewData["Title"]</title>
 }
-
-<div class="row clear-4">
-    @foreach (Models.TopApp app in @Model)
-    {
-        <div class="col-3">
-            <div class="card">
-                <img class="card-img" src="@app.artworkUrl100" alt="Avatar">
-                <div class="container">
-                    <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.id)">@app.name</a></h3>
-                    <p style="font-size:10px">@app.artistName</p>
-
-                    <p>Genre: <span style="font-size:10px">@app.genres</span></p>
+<div class="row">
+    <h1 style="padding-left:15px;margin-top:2em;margin-bottom:0.5em;">@ViewData["Title"] Apps</h1>
+</div>
+<div class="row clear-4" style="margin-bottom:5em;">
+        @foreach (Models.TopApp app in @Model)
+        {
+            <div class="col-3">
+                <div class="card">
+                    <a href="@(Url.Action("Detail", "Apps") + "/" + @app.id)">
+                        <img class="card-img" src="@app.artworkUrl100" alt="Avatar">
+                    </a>
+                    <div class="container">
+                        <h3 style=" font-size: 20px; white-space: nowrap;overflow: hidden;" class="card-title">
+                            <a href="@(Url.Action("Detail", "Apps") + "/" + @app.id)">@app.name</a>
+                        </h3>
+                        <p style="font-size:11px">@app.artistName</p>
+                        <p style="font-size:11px">@app.appGenres[0].Genre.name</p>
+                        <p style="font-size:11px">@app.releaseDate.ToString("MMM dd, yyyy")</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
-</div>
+         }
+    </div>
