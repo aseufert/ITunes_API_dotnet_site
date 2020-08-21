@@ -13,6 +13,7 @@
     <Folder Include="DataAccess\" />
     <Folder Include="Views\Search\" />
     <Folder Include="Views\Dashboard\" />
+    <Folder Include="Views\About\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
