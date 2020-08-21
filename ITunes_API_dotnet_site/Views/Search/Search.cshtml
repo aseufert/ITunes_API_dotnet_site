@@ -20,7 +20,7 @@
     @foreach (Models.Result app in Model.results)
     {
 
-        <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.artistId)">@app.trackCensoredName</a></h3>
+        <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.trackId)">@app.trackCensoredName</a></h3>
         <p>@app.description.Substring(0, Math.Min(app.description.Length, 500))...</p>
     }
     </div>
