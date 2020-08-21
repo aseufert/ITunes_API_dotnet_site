@@ -40,7 +40,6 @@ namespace ITunes_API_dotnet_site.Controllers
             Models.DetailJSON resp = null;
 
             client.BaseAddress = new Uri(url);
-            Console.WriteLine("Running Query");
             // run point query
             Application data = dbContext.MobileApp
                 .Where(p => p.trackId == id)

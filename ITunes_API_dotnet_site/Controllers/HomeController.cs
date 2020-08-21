@@ -51,6 +51,7 @@ namespace ITunes_API_dotnet_site.Controllers
 
             TopApp[] data = dbContext.TopApps
                                 .Include(c => c.appGenres)
+                                .ThenInclude(ag => ag.Genre)
                                 .Where(c => c.paid == paid)
                                 .Take(100)
                                 .ToArray();
@@ -102,7 +103,6 @@ namespace ITunes_API_dotnet_site.Controllers
                         app.paid = paid;
                         dbApps.Add(app);
                     }
-                    Console.WriteLine("FINAL LIST");
                     foreach (Models.Genre item in dbGenres)
                     {
                         Console.WriteLine(item.genreId);

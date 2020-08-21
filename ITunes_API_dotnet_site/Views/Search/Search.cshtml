@@ -1,0 +1,28 @@
+﻿@model ITunes_API_dotnet_site.Models.SearchRoot;
+
+@section head {
+    <title>@ViewData["Title"]</title>
+}
+<div class="row" style="margin-top: 2em; padding-left: 1em;">
+    <form action="/search" method="get">
+        <label for="search">Search:</label><br>
+        <input type="text" id="term" name="term">
+        <input type="submit" value="Submit">
+    </form>
+</div>
+
+
+@if (!Model.Empty)
+{
+    <div style="margin-top: 2em; padding-left: 1em;">
+
+    <p>Result Count: @Model.resultCount</p>
+    @foreach (Models.Result app in Model.results)
+    {
+
+        <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.trackId)">@app.trackCensoredName</a></h3>
+        <p>@app.description.Substring(0, Math.Min(app.description.Length, 500))...</p>
+    }
+    </div>
+
+}

@@ -1,0 +1,115 @@
+﻿@model DashboardViewModel;
+
+@section head {
+    <title>@ViewData["Title"]</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js"></script>
+}
+
+@*AGGREGATIONS*@
+<div class="row clear-4" style="margin-top:3em;">
+    <div class="col-3">
+        <div class="card" style="background-color:coral;">
+            <div class="row">
+                <i class="fa fa-mobile"></i>
+                <span style="font-size:large;font-weight:500;">  Total Apps:</span>
+            </div>
+            <div class="row">
+                <p>@ViewData["app_count"]</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card" style="background-color:mediumseagreen;">
+            <div class="row">
+                <i class="fa fa-bar-chart"></i>
+                <span style="font-size:large;font-weight:500;">  Average Rating:</span>
+            </div>
+            <div class="row">
+                <p>@Math.Round((double)ViewData["avg_rating"], 2)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card" style="background-color:cornflowerblue;">
+            <div class="row">
+                <i class="fa fa-line-chart"></i>
+                <span style="font-size:large;font-weight:500;">  Avg Rating (Paid):</span>
+            </div>
+            <div class="row">
+                <p>@Math.Round((double)ViewData["avg_rating_paid"], 2)</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="card" style="background-color:lavender;">
+            <div class="row">
+                <i class="fa fa-star"></i>
+                <span style="font-size:large;font-weight:500;">  Avg Rating (Free):</span>
+            </div>
+            <div class="row">
+                <p>@Math.Round((double)ViewData["avg_rating_free"], 2)</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*CHARTS*@
+<div class="row" style="display:flex;justify-content:center;margin-top:2em;margin-bottom:1.5em;">
+    <div class="col-9 card">
+        <canvas id="ratingschart" style="position: relative;"></canvas>
+    </div>
+</div>
+
+<div class="row" style="display:flex;justify-content:center;margin-top:1.5em;margin-bottom:3em;">
+    <div class="col-9 card">
+        <canvas id="averageRatingsChart" style="position: relative;"></canvas>
+    </div>
+</div>
+
+@section scripts {
+    @*Ratings Chart*@
+<script>
+    new Chart(document.getElementById("ratingschart"), {
+      type: "bar",
+      data: {
+        labels: [@Html.Raw(string.Join(",", Model.ratings.Select(m => '"' + m.trackCensoredName.Substring(0, Math.Min(10, m.trackCensoredName.Length)) + '"').ToArray()))],
+        datasets: [
+          {
+            label: "Ratings Count",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                data: [@string.Join(",", Model.ratings.Select(m => m.UserRatingCount).ToArray())]
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+          text: "Top 10 Most Rated Apps"
+        }
+      }
+    });
+
+    @*Ratings for Version Chart*@
+    new Chart(document.getElementById("averageRatingsChart"), {
+      type: "bar",
+      data: {
+        labels: [@Html.Raw(string.Join(",", Model.averageRatings.Select(m => '"' + m.trackCensoredName.Substring(0, Math.Min(10, m.trackCensoredName.Length)) + '"').ToArray()))],
+        datasets: [
+          {
+            label: "Ratings for Current Version",
+                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850", "#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+            data: [@string.Join(",", Model.averageRatings.Select(m => m.averageUserRating).ToArray())]
+          }
+        ]
+      },
+      options: {
+        legend: { display: false },
+        title: {
+          display: true,
+            text: "Top 10 Highest Rated Apps"
+        }
+      }
+    });
+</script>
+}
