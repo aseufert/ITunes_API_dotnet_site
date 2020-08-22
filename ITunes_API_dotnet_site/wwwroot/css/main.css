@@ -1,0 +1,145 @@
+﻿
+body,
+html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Abel';
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+    background-color: #333;
+}
+
+    /* Style the links inside the navigation bar */
+    .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    }
+
+        /* Change the color of links on hover */
+        .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add an active class to highlight the current page */
+        .topnav a.active {
+            background-color: #a8a8a8;
+            color: white;
+        }
+
+    /* Hide the link that should open and close the topnav on small screens */
+    .topnav .icon {
+        display: none;
+    }
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.content {
+    padding-top: 48px;
+    min-height: calc(100vh - 122px);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    overflow-y: hidden;
+    height: 100%;
+    padding: 1em;
+}
+
+    .card:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.6);
+    }
+
+.container {
+    padding: 2px 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card p {
+    margin: 0;
+}
+
+.card h3 {
+    margin-bottom: 0;
+}
+
+    .card-title a {
+        font-size: medium;
+        text-decoration: none;
+        color: black;
+        margin: 5px 0;
+    }
+
+    .card-title a:hover {
+        text-decoration: underline;
+    }
+
+    .card-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        max-height: 150px;
+        max-width: 150px;
+        margin-top: 1em;
+    }
+
+
+footer {
+    background-color: #333;
+    color: #f2f2f2;
+}
+
+.copyright {
+    font-size: smaller;
+}
+
+
+/* TABLET GRIDS */
+@media only screen and (min-width: 600px) {
+    .content {
+        margin: 0 2em;
+        min-height: calc(100vh - 122px);
+    }
+
+    .topnav .icon {
+        display: flex;
+        float: right;
+        padding: 10px;
+    }
+}
+
+/* PHONE LANDSCAPE */
+@media only screen and (orientation: landscape) and (min-width: 600px) {
+    .content {
+        margin: 0 4em;
+        min-height: calc(100vh - 122px);
+    }
+}
+
+/* DESKTOP GRIDS */
+@media only screen and (min-width: 768px) {
+    .content {
+        margin: 0 5em;
+        min-height: calc(100vh - 122px);
+    }
+
+    .card {
+        height: 100%;
+        padding-bottom: 1em;
+    }
+}
