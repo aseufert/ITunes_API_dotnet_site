@@ -17,7 +17,7 @@
     <div style="margin-top: 2em; padding-left: 1em;">
 
     <p>Result Count: @Model.resultCount</p>
-    @foreach (Models.Result app in Model.results)
+    @foreach (ITunes_API_dotnet_site.Models.Result app in Model.results)
     {
 
         <h3><a href="@(Url.Action("Detail", "Apps") + "/" + @app.trackId)">@app.trackCensoredName</a></h3>
