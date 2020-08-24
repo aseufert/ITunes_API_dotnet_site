@@ -1,0 +1,49 @@
+﻿@model ITunes_API_dotnet_site.Models.Review
+
+@{
+    string display = @Model.reviewId == 0 ? "block" : "none";
+}
+
+    <form asp-controller="Apps" asp-action="AddReview" method="post" class="review" id="@Model.reviewId" style="display:@display;">
+        <input hidden value="@Model.app.trackId" asp-for="formId" />
+        <input hidden value="@Model.reviewId" asp-for="reviewId" />
+
+        <p>Name: <input asp-for="username" /></p>
+        @{
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            listItems.Add(new SelectListItem
+            {
+                Text = "1",
+                Value = "1"
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "2",
+                Value = "2"
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "3",
+                Value = "3"
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "4",
+                Value = "4"
+            });
+            listItems.Add(new SelectListItem
+            {
+                Text = "5",
+                Value = "5",
+                Selected = true
+            });
+        }
+
+        <p>Rating: @Html.DropDownListFor(model => model.rating, listItems)</p>
+        <p>Title: <input asp-for="title" /></p>
+        <p>Review:</p>
+        <textarea asp-for="review" rows="10" cols="60"></textarea>
+        <br />
+
+        <button class="button button2" type="submit">Submit</button>
+    </form>
