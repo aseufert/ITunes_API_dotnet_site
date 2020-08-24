@@ -11,6 +11,11 @@ html {
     overflow: hidden;
     background-color: #333;
 }
+.topnav .logo {
+    float: right;
+    display: block;
+    padding: 10px;
+}
 
 /* Style the links inside the navigation bar */
 .topnav a {
@@ -18,7 +23,7 @@ html {
     display: block;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 17px 16px;
     text-decoration: none;
     font-size: 17px;
 }
@@ -108,11 +113,42 @@ footer {
     font-size: smaller;
 }
 
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button2 {
+    background-color: white;
+    color: black;
+    border: 2px solid #008CBA;
+    border-width: thin;
+}
+
+.button2:hover {
+    background-color: #008CBA;
+    color: white;
+}
 /* TABLET GRIDS */
 @media only screen and (min-width: 600px) {
     .content {
         margin: 0 2em;
         min-height: calc(100vh - 122px);
+    }
+}
+/* TABLET GRIDS */
+@media only screen and (max-width: 720px) {
+    .topnav .logo {
+        display: none;
     }
 }
 

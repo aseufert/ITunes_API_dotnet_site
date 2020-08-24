@@ -42,8 +42,10 @@ namespace ITunes_API_dotnet_site.Controllers
             client.BaseAddress = new Uri(url);
             // run point query
             Application data = dbContext.MobileApp
+                .Include(r => r.reviews)
                 .Where(p => p.trackId == id)
                 .SingleOrDefault();
+
             // if there's no data in db, call api
             if (data == null)
             {
@@ -68,5 +70,50 @@ namespace ITunes_API_dotnet_site.Controllers
 
             return View(data);
         }
+
+
+        [HttpPost]
+        public ActionResult AddReview(Review reviewSubmission)
+        {
+
+            if (reviewSubmission.reviewId == 0)
+            {
+                // Get app for foreign key
+                Application revApp = dbContext.MobileApp
+                .Where(r => r.trackId == reviewSubmission.formId)
+                .SingleOrDefault();
+
+                // create new app
+                Review newReview = new Models.Review();
+                newReview.app = revApp;
+                newReview.rating = reviewSubmission.rating;
+                newReview.title = reviewSubmission.title;
+                newReview.username = reviewSubmission.username;
+                newReview.review = reviewSubmission.review;
+                dbContext.Review.Add(newReview);
+            } else
+            {
+                dbContext.Update(reviewSubmission);
+            }
+            dbContext.SaveChanges();
+
+            // redirect to detail page
+            return RedirectToAction("Detail", "Apps", new { id = reviewSubmission.formId});
+        }
+
+        [Route("Apps/Detail/{appId:int:min(1)}/Review/Delete/{reviewId:int:min(1)}")]
+        public ActionResult DeleteReview(int appId, int reviewId)
+        {
+            // Get app for foreign key
+            Review revApp = dbContext.Review
+                .Where(r => r.reviewId == reviewId)
+                .SingleOrDefault();
+            dbContext.Review.Remove(revApp);
+            dbContext.SaveChanges();
+
+            // redirect to detail page
+            return RedirectToAction("Detail", "Apps", new { id = appId });
+        }
+
     }
 }

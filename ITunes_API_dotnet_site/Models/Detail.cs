@@ -40,6 +40,15 @@ namespace ITunes_API_dotnet_site.Models
         public int UserRatingCount { get; set; }
         public int UserRatingCountForCurrentVersion { get; set; }
         public string version { get; set; }
+
+        public ICollection<Review> reviews { get; set; }
+        public bool ReviewsEmpty
+        {
+            get
+            {
+                return reviews.Count == 0;
+            }
+        }
     }
 }
 

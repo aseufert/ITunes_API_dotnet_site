@@ -1,9 +1,8 @@
 ﻿@model ITunes_API_dotnet_site.Models.Application;
 
 @section head {
-    <title>@Model.artistName</title>
+    <title>@Model.trackName</title>
 }
-
 
 
 <div class="row">
@@ -11,7 +10,7 @@
         <div class="card">
             <img class="card-img" src=@Model.artworkUrl100 alt="Avatar" style="width:100%">
             <div class="container">
-                <p class="card-title"><a href=@Model.trackViewUrl target="_blank">@Model.trackName</a></p>
+                <p class="card-title" style="font-size: x-large;"><a href=@Model.trackViewUrl target="_blank">@Model.trackName</a></p>
                 <p style="font-size:10px">@Model.artistName</p>
 
                 <p>Genre:</p>
@@ -26,94 +25,29 @@
         </br>
         @Model.artistName
         </br>
-        @Model.averageUserRating, @Model.UserRatingCount Ratings
+        @string.Format("{0:0.00}", Model.averageUserRating) Stars
+        </br>
+        @Model.UserRatingCount Ratings
         </br>
         @Model.formattedPrice
         </br>
         Offers In-App Purchases
+        </br>
+        @Model.contentAdvisoryRating
     </div>
 </div>
-
-@*
-    <div class="row">
-        <h2>Screenshots</h2>
-    </div>
-
-    <div class="row">
-        <img class="col-3" src="./img/tiktok_phone_1.jpg">
-        <img class="col-3" src="./img/tiktok_phone_2.jpg">
-        <img class="col-3" src="./img/tiktok_phone_3.jpg">
-        <img class="col-3" src="./img/tiktok_phone_4.jpg">
-    </div>
-*@
-
+@*APP DESCRIPTION*@
 <div class="row">
-    <h2>Description</h2>
+    <h2 class="col-12">Description</h2>
 </div>
 
 <div class="row">
-    <p>@Model.description</p>
-
-    @*
-        <p>
-            TikTok is THE destination for mobile videos.
-            On TikTok, short-form videos are exciting, spontaneous, and genuine.
-            Whether you’re a sports fanatic, a pet enthusiast, or just looking for a laugh,
-            there’s something for everyone on TikTok. All you have to do is watch,
-            engage with what you like, skip what you don’t, and you’ll find an endless
-            stream of short videos that feel personalized just for you. From your morning
-            coffee to your afternoon errands, TikTok has the videos that are guaranteed to
-            make your day.
-        </p>
-        <p>
-            We make it easy for you to discover and create your own original videos by
-            providing easy-to-use tools to view and capture your daily moments.
-            Take your videos to the next level with special effects, filters, music, and
-            more.
-
-        </p>
-        <p>
-            ■ Watch endless amount of videos customized specifically for you
-            </br>
-            A personalized video feed based on what you watch, like, and share. TikTok offers you real, interesting, and fun videos that will make your day.
-            </br>
-
-            ■ Explore videos, just one scroll away
-            </br>
-            Watch all types of videos, from Comedy, Gaming, DIY, Food, Sports, Memes, and Pets, to Oddly Satisfying, ASMR, and everything in between.
-
-            </br>
-            ■ Pause recording multiple times in one video
-            </br>
-            Pause and resume your video with just a tap. Shoot as many times as you need.
-            </br>
-            ■ Be entertained and inspired by a global community of creators
-            </br>
-            Millions of creators are on TikTok showcasing their incredible skills and everyday life. Let yourself be inspired.
-            </br>
-
-            ■ Add your favorite music or sound to your videos for free
-            </br>
-            Easily edit your videos with millions of free music clips and sounds. We curate music and sound playlists for you with the hottest tracks in every genre, including Hip Hop, Edm, Pop, Rock, Rap, and Country, and the most viral original sounds.
-            </br>
-
-            ■ Express yourself with creative effects
-            </br>
-            Unlock tons of filters, effects, and AR objects to take your videos to the next level.
-            </br>
-
-            ■ Edit your own videos
-            </br>
-            Our integrated editing tools allow you to easily trim, cut, merge and duplicate video clips without leaving the app.
-        </p>
-
-        * Any feedback? Contact us at feedback@tiktok.com or tweet us tiktok_us
-        </p>
-
-    *@
+    <p class="col-12">@Html.Raw(Model.description.Replace("\n", "<br />"))</p>
 </div>
+
+@*APP INFORMATION*@
 <div class="row">
-    <h2>Information</h2>
+    <h2 class="col-12">Information</h2>
 </div>
 <div class="row">
     <style>
@@ -133,133 +67,103 @@
             text-align: right;
         }
     </style>
-    <table>
+    <table class="col-12">
         <tr>
-            <td>Seller</td>
+            <td><b>Seller</b></td>
             <td>@Model.sellerName</td>
         </tr>
         <tr>
-            <td>Category</td>
+            <td><b>Category</b></td>
             <td>@Model.primaryGenreName</td>
         </tr>
-        @*
         <tr>
-            <td>Compatibility </td>
-            <td>Requires iOS 9.3 or later. Compatible with iPhone, iPad, and iPod touch.</td>
+            <td><b>Advisory</b></td>
+            <td>@Model.contentAdvisoryRating</td>
         </tr>
         <tr>
-            <td>Languages</td>
-            <td>
-                English, Arabic, Bengali, Burmese, Cambodian, Cebuano, Czech,
-                Dutch, Filipino, French, German, Greek, Gujarati, Hindi,
-                Hungarian, Indonesian, Italian, Japanese, Javanese, Kannada,
-                Korean, Malay, Malayalam, Marathi, Oriya, Polish, Portuguese,
-                Punjabi, Romanian, Russian, Simplified Chinese, Spanish,
-                Swedish, Tamil, Telugu, Thai, Traditional Chinese, Turkish,
-                Ukrainian, Vietnamese
-            </td>
-        </tr>
-        <tr>
-            <td>Age Rating</td>
-            <td>
-                12+
-                </br>
-                </br>
-                Infrequent/Mild Alcohol, Tobacco, or Drug Use or References
-                </br>
-                </br>
-                Infrequent/Mild Sexual Content and Nudity
-                </br>
-                </br>
-                Infrequent/Mild Cartoon or Fantasy Violence
-                </br>
-                </br>
-                Infrequent/Mild Profanity or Crude Humor
-                </br>
-                </br>
-                Infrequent/Mild Mature/Suggestive Themes
-            </td>
-        </tr>
-        *@
-        <tr>
-            <td>Copyright</td>
-            <td>ITunes_API_dotnet_site.Models.Feed.copyright</td>
-        </tr>
-        <tr>
-            <td>Price</td>
+            <td><b>Price</b></td>
             <td>@Model.formattedPrice</td>
         </tr>
         <tr>
-            <td>Version</td>
+            <td><b>Version</b></td>
             <td>@Model.version</td>
         </tr>
         <tr>
-            <td>Release Date</td>
+            <td><b>Release Date</b></td>
             <td>@Model.releaseDate</td>
         </tr>
         <tr>
-            <td>Release Notes</td>
-            <td>@Model.releaseNotes</td>
+            <td><b>Release Notes</b></td>
+            <td>@Html.Raw(Model.releaseNotes.Replace("\n", "<br />"))</td>
         </tr>
-        @*
-        <tr>
-            <td>In-App Purchases </td>
-            <td>
-                <table>
-                    <tr>
-                        <td>1.</td>
-                        <td>100 coins</td>
-                        <td>$0.99</td>
-                    </tr>
-                    <tr>
-                        <td>2.</td>
-                        <td>500 coins</td>
-                        <td>$4.99</td>
-                    </tr>
-                    <tr>
-                        <td>3.</td>
-                        <td>65 coins</td>
-                        <td>$0.99</td>
-                    </tr>
-                    <tr>
-                        <td>4.</td>
-                        <td>330 coins</td>
-                        <td>$4.99</td>
-                    </tr>
-                    <tr>
-                        <td>5.</td>
-                        <td>2000 coins</td>
-                        <td>$19.99</td>
-                    </tr>
-                    <tr>
-                        <td>6.</td>
-                        <td>1321 coins</td>
-                        <td>$19.99</td>
-                    </tr>
-                    <tr>
-                        <td>7.</td>
-                        <td>5000 coins</td>
-                        <td>$49.99</td>
-                    </tr>
-                    <tr>
-                        <td>8.</td>
-                        <td>3303 coins</td>
-                        <td>$49.99</td>
-                    </tr>
-                    <tr>
-                        <td>9.</td>
-                        <td>6607 coins</td>
-                        <td>$99.99</td>
-                    </tr>
-                    <tr>
-                        <td>10.</td>
-                        <td>10000 coins</td>
-                        <td>$99.99</td>
-                    </tr>
-                </table>
-
-            </td>
-        </tr>
-        *@
     </table>
+
 </div>
+
+@*APP REVIEWS*@
+
+
+<div class="row">
+    @if (Model.reviews != null)
+    {
+        <div class="row">
+            <h2 class="col-12" style="margin-bottom: 0;padding-bottom: 0;">User Reviews</h2>
+        </div>
+        @foreach (Models.Review review in Model.reviews)
+        {
+            @*name*@
+            <div class="row">
+                <div class="col-12" style="margin-bottom: 0;padding-bottom:0;margin-top: 0;">
+                    <p style="margin-bottom: 0;padding-bottom:0;margin-top: 0;">@review.username</p>
+                </div>
+            </div>
+            @*Rating*@
+            <div class="row">
+                <div class="col-12" style="margin-bottom: 0;padding-bottom: 0;margin-top: 0; padding-top:4px;">
+                    @Html.Raw(review.rating >= 1 ? "<i class='fa fa-star'></i>" : "<i class='fa fa-star-o'></i>")
+                    @Html.Raw(review.rating >= 2 ? "<i class='fa fa-star'></i>" : "<i class='fa fa-star-o'></i>")
+                    @Html.Raw(review.rating >= 3 ? "<i class='fa fa-star'></i>" : "<i class='fa fa-star-o'></i>")
+                    @Html.Raw(review.rating >= 4 ? "<i class='fa fa-star'></i>" : "<i class='fa fa-star-o'></i>")
+                    @Html.Raw(review.rating >= 5 ? "<i class='fa fa-star'></i>" : "<i class='fa fa-star-o'></i>")
+                </div>
+            </div>
+            @*title*@
+            <div class="row">
+                <div class="col-12" style="margin-bottom: 0;padding-bottom: 0;margin-top: 0;">
+                    <h5 style="margin-bottom: 0;padding-bottom: 0;margin-top: 0;">@review.title</h5>
+                    <p style="margin-bottom: 0;padding-bottom: 0;margin-top: 0;">@review.review</p>
+                </div>
+            </div>
+
+            <div class="row" style="margin-left:1em; margin-top: 1em;">
+                <i class="fa fa-edit" onclick="toggleReview(@review.reviewId)"></i>
+                <a href="@("/Apps/Detail/" + @Model.trackId +  "/Review/Delete/" + review.reviewId)" style="color: black;" onclick="return confirm('Are you sure you want to delete this review?');">
+                    <i class="fa fa-trash" style="margin-left: 4px;"></i>
+                </a>
+            </div>
+
+            <partial name="Review" model="review" />
+
+            <hr style="color: lightgray;" />
+        }
+    }
+</div>
+
+
+<div class="row" style="margin-bottom: 5em;">
+    <h2 class="col-12" style="margin-left:0;">Write a Review:</h2>
+    <partial name="Review" model="new ITunes_API_dotnet_site.Models.Review() { app = @Model }" />
+</div>
+
+@section Scripts {
+    <script>
+        function toggleReview(id) {
+            var x = document.getElementById(id);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
+}

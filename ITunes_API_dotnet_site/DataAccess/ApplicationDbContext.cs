@@ -11,5 +11,6 @@ namespace ITunes_API_dotnet_site.DataAccess
         public DbSet<Genre> AppGenre { get; set; }
         public DbSet<TopAppGenres> TopAppGenres { get; set; }
         public DbSet<Application> MobileApp { get; set; }
+        public DbSet<Review> Review { get; set; }
     }
 }
